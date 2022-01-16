@@ -1,7 +1,7 @@
 {
   "name": "BainesCreditApp",
   "version": "1.3.0",
-  "start" : "node server.js",
+  "start": "node server.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -56,5 +56,8 @@
     "tslint": "~6.1.0",
     "typescript": "~4.4.4"
   },
-  "engines": { "node": "16.10.0", "npm": "7.13.0" }
+  "engines": {
+    "node": "16.10.0",
+    "npm": "7.13.0"
+  }
 }
