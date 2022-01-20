@@ -338,12 +338,16 @@ h3 {
                     }
                 }
             }
+            .text-color{
+                color:#0976CB;
+            }
             .navbar-button {
                 margin-left: 25px;
 
                 a {
                     color: $white-color;
-                    background: $light-blue;
+                    //background: $light-blue;
+                    background: #0976CB;
                     padding: 10px 37px;
                     border-radius: 5px;
                     position: relative;
@@ -1557,7 +1561,8 @@ h3 {
 
 /* Footer CSS Start */
 .footer-area {
-    background: $blue-color;
+    //background: $blue-color;
+    background: #22253D;
     z-index: 1;
     padding-top: 30px;
     position: relative;
@@ -4936,3 +4941,5 @@ h3 {
     margin-left: auto;
     margin-right: unset;
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

@@ -3,12 +3,12 @@
 
 
 <section class="why-choose-section why-choose-bg">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-lg-6 shadow p-3 mb-5 bg-white rounded" style="background-color: white; padding: 20px; margin-bottom: -10px;">
                 <!--<img src="assets/img/p1.png" />-->
 
-                <div class="responsive" style="width: 700px;padding:30px">
+                <div class="responsive" style="padding:30px">
                     <div class="col text-center">
                         <h2 style="color:darkblue;"> Go beyond the ordinary and step into a new world where you enjoy flexibility,control and best inclass services.</h2>
                          
@@ -34,38 +34,72 @@
                             
                            
                             <div [ngStyle]="{display:msg}" class="alert alert-success">
-                                <li class="list-group-item">Account Opened Successfully</li>
-                                <li class="list-group-item">Account Number: {{AccountNumber}}</li>
-                                <li class="list-group-item">Customer ID: {{CustomerID}}</li>
-                                <li class="list-group-item">Account Name: {{FullName}}</li>
+                                <li class="list-group-item"><h3>Account Opened Successfully</h3></li>
+                                <li class="list-group-item"><h3>Account Number: {{AccountNumber}}</h3></li>
+                                <li class="list-group-item"><h3>Customer ID: {{CustomerID}}</h3></li>
+                                <li class="list-group-item"><h3>Account Name: {{FullName}}</h3></li>
+                                <li class="list-group-item"><button class="btn btn-primary btn-large" (click)="NewApplication()">New Application</button></li>
                             </div>
-                            
+                            <div [ngStyle]="{display:error}" class="alert alert-danger">
+                                <li class="list-group-item"><h3>Account cannot be opened</h3></li>
+                                <li class="list-group-item"><h3>Please kindly send us a mail at info@bainescredit.com if the issue persists</h3></li>
+                                <li class="list-group-item"><button class="btn btn-primary btn-large" (click)="NewApplication()">New Application</button></li>
+                                
+                            </div>
+                            <div class="loading" style="display:block" [ngStyle]="{display:loading}" >
+                                <h1>Loading...</h1>
+                            </div>
+                            <ng-template #content let-modal>
+                                <div class="modal-header">
+                                  <h4 class="modal-title" id="modal-basic-title">Terms and Conditions</h4>
+                                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    Please kindly avail us the terms and conditions.
+
+                                </div>
+                                  
+                                   
+                                <div class="modal-footer">
+                                  
+                                </div>
+                              </ng-template>
+
+                            <div class="my-overlay" *ngIf="showOverlay">
+                                <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                              </div>
                             <div [ngStyle]="{display:confirm}">
-                                <h2>Confirm Details</h2>
-                                <li class="list-group-item">Last Name: {{obj.LastName}}</li>
-                                <li class="list-group-item">First Name: {{obj.FirstName}}</li>
-                                <li class="list-group-item">middle Name: {{obj.MiddleName}}</li>
-                                <li class="list-group-item">Gender: {{obj.Gender}}</li>
-                                <li class="list-group-item">Date of Birth: {{obj.DateOfBirth}}</li>
-                                <li class="list-group-item">Address: {{obj.Address}}</li>
-                                <li class="list-group-item">Email: {{obj.Email}}</li>
-                                <li class="list-group-item"><button class="btn btn-success btn-large" (click)="editApplication()">Edit Details</button> &nbsp; <button class="btn btn-success btn-large" (click)="SubmitApplication(obj)">{{btn}}</button> </li>
+                                
+                                <span style="color: #383e7e;"><h2>CONFIRM DETAILS</h2></span>
+                                <li class="list-group-item"><h3>Last Name: {{obj.LastName}}</h3></li>
+                                <li class="list-group-item"><h3>First Name: {{obj.FirstName}}</h3></li>
+                                <li class="list-group-item"><h3>middle Name: {{obj.MiddleName}}</h3></li>
+                                <li class="list-group-item"><h3>Gender: <span *ngIf="obj.Gender==1">Female</span><span *ngIf="obj.Gender==0">Male</span></h3></li>
+                                <li class="list-group-item"><h3>Date of Birth: {{obj.DateOfBirth}}</h3></li>
+                                <li class="list-group-item"><h3>Address: {{obj.Address}}</h3></li>
+                                <li class="list-group-item"><h3>Email: {{obj.Email}}</h3></li>
+                                <li class="list-group-item"><h3>Account Type: <span *ngIf="acctType=='100'">Savings Account</span><span *ngIf="acctType=='200'">Current Account</span><span *ngIf="acctType=='300'">Corporate Account</span></h3></li>
+                                <li class="list-group-item"><button class="btn btn-warning btn-large" (click)="editApplication()">Edit Details</button> &nbsp; <button class="btn btn-primary btn-large" (click)="SubmitApplication(obj)">{{btn}}</button> </li>
                                
                             </div>
-                               
-                               
-                                <div [ngStyle]="{display:form}" style="width: 600px; ">
-                                    <h2>INSTANT ACCOUNT OPENING FORM</h2>
+                            <div class="md-form">
+                               <form class="needs-validation">
+                                <div [ngStyle]="{display:form}" class="responsive" >
+                                    <span style="color: #383e7e;"><h2>INSTANT ACCOUNT OPENING FORM</h2></span>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <span class="input-group-addon">Last Name</span>
-                                                <input type="text" class="form-control" name="LastName" [(ngModel)]="obj.LastName" />
+                                                <span class="input-group-addon text-color">Last Name</span>
+                                                <input type="text" required id="LastName"  class="form-control" name="LastName" [(ngModel)]="obj.LastName" />
+                                                <div class="valid-feedback">Valid LastName.</div>
+        <div class="invalid-feedback">Please fill out this field.</div>
                                             </div>
                                         </div>
                                         <div class="col-md-6"><div class="form-group">
-                                            <span class="input-group-addon">First Name</span>
-                                            <input type="text" class="form-control" [(ngModel)]="obj.FirstName" />
+                                            <span class="input-group-addon text-color">First Name</span>
+                                            <input type="text" class="form-control" [(ngModel)]="obj.FirstName" name="FirstName" />
                                         </div></div>
 
 
@@ -76,18 +110,18 @@
                         
                         <div class="row">
                             <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon">Middle Name</span>
-                                <input type="text" class="form-control" [(ngModel)]="obj.MiddleName" />
+                                <span class="input-group-addon text-color">Middle Name</span>
+                                <input type="text" class="form-control" [(ngModel)]="obj.MiddleName" name="MiddleName" />
                             </div></div>
                             <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon">Date of Birth</span>
-                                <input type="date" class="form-control" [(ngModel)]="obj.DateOfBirth" />
+                                <span class="input-group-addon text-color">Date of Birth</span>
+                                <input type="date" class="form-control" [(ngModel)]="obj.DateOfBirth" name="DateOfBirth" ngbDatepicker  />
                             </div></div>
                         </div>
                         <div class="row">
                             <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon">Gender</span>
-                                <select class="form-control" [(ngModel)]="obj.Gender">
+                                <span class="input-group-addon text-color">Gender</span>
+                                <select class="form-control" [(ngModel)]="obj.Gender" name="Gender">
                                     <option>--Gender--</option>
                                     <option value="1">Female</option>
                                     <option value="0">Male</option>
@@ -95,38 +129,67 @@
                                 </select>
                             </div></div>
                             <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon">Phone</span>
-                                <input type="text" class="form-control" [(ngModel)]="obj.PhoneNumber" />
+                                <span class="input-group-addon text-color">Phone</span>
+                                <input type="text" class="form-control" [(ngModel)]="obj.PhoneNumber" name="PhoneNumber" />
                             </div></div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12"><div class="form-group">
-                                <span class="input-group-addon">Address</span>
-                                <input type="text" class="form-control" [(ngModel)]="obj.Address" />
-                            </div></div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                <span class="input-group-addon text-color">Email</span>
+                                <input type="text" class="form-control" [(ngModel)]="obj.Email" name="Email" />
+                            </div>
                         </div>
+                        </div>   
                         <div class="row">
-                            <div class="col-md-12"><div class="form-group">
-                                <span class="input-group-addon">Email</span>
-                                <input type="text" class="form-control" [(ngModel)]="obj.Email" />
+                            <div class="col-md-6"><div class="form-group">
+                                <span class="input-group-addon text-color">Address</span>
+                                <textarea  class="form-control" required [(ngModel)]="obj.Address" name="Address"></textarea>
+                                
                             </div></div>
-                        </div>                    
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <span class="input-group-addon text-color">Type of Account</span>
+                                <select name="type" class="form-control" [(ngModel)]="acctType" required>
+                                    <option value="">Select Account Type</option>
+                                    <option value="100">Savings Account</option>
+                                    <option value="200">Current Account</option>
+                                    <option value="300">Corporate Account</option>
+                                </select>
+                            </div>
+                        </div>
+                        </div>
+                             
+                        <div class="row">
+                            
+                        <div class="col-md-6">
+                           
+                        </div>
+                        </div>     
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <div [hidden]="captcha">
+                                    <span class="input-group-addon">Proof you are human</span>
+                                    
+                                    <re-captcha (resolved)="resolved($event)" siteKey="6Le4bRweAAAAAA3s4_O_38uTdk9xHPUDjxurz1tU"></re-captcha>
+                                </div>
+                                
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                            <div [hidden]="!captcha">
+                                
+                                <span class="text-color">By clicking on Confirm Details button below you agree to the <a href="#" (click)="open(content)"> Terms and conditions</a> of Baines Credit Microfinance Bank Online Account Opening </span>
+                                <p><button class="btn btn-primary btn-large" (click)="confirmdetails()">Confirm Details</button></p>
+                            </div>
+                        </div>         
                        
                         
-                        <div class="row" style="margin-top: 10px !important;">
-                            <div class="col-lg-12"> 
-                                <button class="btn btn-primary btn-large" (click)="confirmdetails()">Confirm Details</button>
-                                <div class="col text-center">
-                                <div class="form-group">       
-                                                               
-                                
-                            </div>
-                            </div>
+                       
+                        </div></form>
                         </div>
-                            
-                        </div>
-                        </div>
-                        
                     </div>
                                               
                    

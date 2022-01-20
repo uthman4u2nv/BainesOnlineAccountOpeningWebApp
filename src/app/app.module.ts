@@ -25,6 +25,8 @@ import { TeamTwoComponent } from './components/pages/team-two/team-two.component
 import { ContactComponent } from './components/pages/contact/contact.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RecaptchaModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
