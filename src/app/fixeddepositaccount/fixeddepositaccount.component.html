@@ -1,1 +1,313 @@
-<p>fixeddepositaccount works!</p>
+<section class="why-choose-section why-choose-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 shadow p-3 mb-5 bg-white rounded" style="background-color: white; padding: 20px; margin-bottom: -10px;">
+                <!--<img src="assets/img/p1.png" />-->
+
+                <div class="responsive" style="padding:30px">
+                    <div class="col text-center">
+                        <h2 style="color:darkblue;"> Go beyond the ordinary and step into a new world where you enjoy flexibility,control and best inclass services.</h2>
+                         
+                     </div>
+                     <div style="margin-top: 40px;">
+                        <h3><p>Some of the benefits of opening account with Baines Credit</p></h3>
+                        
+                            <h6><p>* Different account types specially suited for you.</p></h6>
+                            <h6><p>* Attractive interest rates (based on account type).</p></h6>
+                            <h6><p>* Your funds are fully insured by NDIC.</p></h6>
+                            <h6><p>* Enjoy flexibility and control.</p></h6>
+                        
+                        </div>
+                </div>
+                
+                
+            </div>
+            <div class="col-lg-6 shadow p-3 mb-5 bg-white rounded" style="padding-left: 20px;padding-right: 20px;">
+                <div class="card" style="border: 0px;">
+                    <div class="card-body">
+                        <div class="row">
+                            
+                            
+                           
+                            <div [ngStyle]="{display:msg}" class="alert alert-success">
+                                <li class="list-group-item"><h3>Account Opened Successfully</h3></li>
+                                <li class="list-group-item"><h3>Account Number: {{AccountNumber}}</h3></li>
+                                <li class="list-group-item"><h3>Customer ID: {{CustomerID}}</h3></li>
+                                <li class="list-group-item"><h3>Account Name: {{FullName}}</h3></li>
+                                <li class="list-group-item"><button class="btn btn-primary btn-large" (click)="NewApplication()">New Application</button></li>
+                            </div>
+                            <div [ngStyle]="{display:error}" class="alert alert-danger">
+                                <li class="list-group-item"><h3>Account cannot be opened</h3></li>
+                                <li class="list-group-item"><h3>Please kindly send us a mail at info@bainescredit.com if the issue persists</h3></li>
+                                <li class="list-group-item"><button class="btn btn-primary btn-large" (click)="NewApplication()">New Application</button></li>
+                                
+                            </div>
+                            <div class="loading" style="display:block" [ngStyle]="{display:loading}" >
+                                <h1>Loading...</h1>
+                            </div>
+                            <ng-template #content let-modal>
+                                <div class="modal-header">
+                                  <h4 class="modal-title" id="modal-basic-title">Terms and Conditions</h4>
+                                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>The Bank shall, in addition to any right of set off or similar right prescribed by law, is entitled, without notice, to combine and consolidate all or any of my/our or Accounts with the Bank (without any liabilities to the Bank) and/or to set off or transfer any or all amounts owed by me/us or either of us or a related party to the Bank against any and all money which the Bank may hold for my/our account or any other credit be it cash, cheques, valuables deposits securities negotiable instruments or other assets belonging to me/us whether held on the current or deposit account or otherwise and whether in Naira or any other currency (hereinafter  referred to as "foreign currency")</p>
+                                    <p>The Bank shall be entitled to retain and not repay any amount whatsoever that it owed to me/us or which it holds on my/our behalf and until all amounts owed by me/us or the related party to the Bank have been repaid or discharged in full and, for so long as such amounts have not been discharged or repaid in full, the Bank shall be entitled to appropriate any amounts so owed to me/us or held on my/our behalf in or towards the repayment and discharge of the amounts owed by me/us or either of us or the related party to the Bank.</p>
+                                    <p>1. When effecting any set -off the Bank shall be entitled at its absolute discretion, with or without notice to us to convert any Naira or foreign currency into the currency in which the amount owed was incurred at the applicable official exchange rate for the currencies in question prevailing in Nigeria at the time of such conversion.</p>
+                                    <p>2. I/We shall be responsible for all costs, expenses and liabilities arising for the purchase, retention and sale of investments made on our behalf by the Bank which include but are not limited to all taxes, statutory fees, duties and levies.
+                                    <p>3. The Bank is hereby authorized, in the absence of any written instruction to the contrary, to place my/our funds in any appropriate investment (which for the purpose of this clause shall include but not be limited to investments in Commercial Paper whether guaranteed by the Bank or Otherwise) or on deposit and to renew/reinvest at maturity any investments or deposit made in my/our names(s) on the same terms and conditions that applied to such investment/deposit  immediately prior to its maturity or on such other terms and conditions as the Bank may, in its absolute discretion, consider appropriate under the circumstances.</p>
+                                    <p>4. The Bank may, unless otherwise instructed by me/us, retain on my/our behalf, on a safe custody basis, any investment instruments issued in respect of an investment made on my/our behalf and unless otherwise specifically agreed. I/We will not have recourse to the Bank for the value or worth of such investments.
+                                    </p>
+                                    <p>5. Where the Bank, in the absence of any previous agreement as to rate of interest and costs and charges that will apply if my/our accounts or any of them becomes overdrawn, in its absolute discretion allows us to make any drawing that results in my/our account(s) or any of them becoming overdrawn, the Bank shall be entitled to charge such rate of interest and impose such charges as, in its absolute discretion, it considers appropriate in the circumstances and I/We agree to pay such interest and charges to the Bank on demand.</p>
+                                    <p>6. I/We agree that where I/We give any instruction for a payment(s) that in aggregate exceed(s) the amounts standing to the credit of my/our account(s) against which payment is to be made, the Bank reserves the right to decline to carry out such instruction or where there is more than 
+                                        one transaction, to select the transaction that shall be executed without reference to the date of dispatch or time or receipt of my/our instructions, if the Bank in its discretion makes any such payment for which our/my account is not funded we/I confirm our obligation to repay the Bank whether or not the Bank makes a demand, any outstanding sum in addition to charges and interest accrued thereon.</p>
+                                        <p>8. Where any un-cleared effects credited to my/our account(s) by the Bank are subsequently dishonored and /or the Bank for any reason is required to repay to the paying Banker or any other party all or any part of any amount credited to our account. The Bank will be entitled to debit my/our account(s) with the amount of such un-cleared effects and/or repaid amounts plus accrued interest and applicable bank charges.</p>
+                                        <p>9. No failure or delay in exercising any right power or privilege vested in the Bank by these conditions shall operate as a waiver thereof nor shall any partial exercise of such right, power or privilege preclude any other or further exercise thereof.
+                                        </p>
+                                        <p>10. If any of the Conditions or the provisions specified herein are invalid, illegal or unenforceable in any respect under the law the validity, legality and enforceability of the remaining conditions and/or provisions contained herein shall not in any manner be affected or impaired thereby.</p>
+                                        <p>11. Commission and charges shall be levied in accordance with the Bank's standard scale of charges in force from time to time and copies of which are available on request. The Bank reserves the right to amend its rates of interest in accordance with its standard scale of charges and/or conditions from time to time.</p>
+                                        <p>12. Where these conditions are signed by or on behalf of more than one person as the Customer, all of such persons are bounds by these terms and conditions.</p>
+                                        <p>13. Any communication by the Bank shall be deemed to have been made as soon as it is sent to the most recent address provided by me/us and the date indicated on the duplicate copy of such letter or on the Bank's mailing list will constitute the date on which the communication was sent. Any statement or confirmation of any transaction between me/us or either of us and Bank shall be deemed to have been examined by me/us and to be conclusive and binding unless within 10 workings day from the date specified on such statement/confirmation, I/We or either of us advise the Bank in writing that an item contained therein is being disputed, whether or not such item was made in accordance with the mandate from time to time given by me/us to the Bank.
+                                        </p>
+                                        <p>14. I/We understand and acknowledge that electronic mail, facsimile and verbal communications are insecure transmission media where I/We advise the Bank to accept the instruction in such manner, I/We however undertake to indemnify the Bank in full for any loss it may suffer or incur by reason of its honoring my/our Letters, electronic mail, facsimile or verbal instructions, irrespective of whether same are erroneous. Fraudulent or issued  otherwise than in accordance with the mandate for my/our accounts(s) any and all payment instructions issued in accordance with the mandate for my/our account(s) and which bears or purports to bear the facsimile or electronic mail signature of the person(s) whose specimens signatures have been provided to the Bank by me/us. The Bank is hereby authorized to honor and to debit my/our account, for any and all payment instructions/confirmations issued or provided by me/us using a pre-agreed format for same which may include but is not limited to oral or written Instructions/confirmations and where given orally such oral instruction may if previously agreed involves the use of specific password(s) and when in writing may be given by letter, facsimile or electronic mail.</p>
+                                        <p>15. I/We hereby authorize the Bank to debit my/our account with the cost incurred in respect of the issuance of the cheque book(s) for the above account.
+                                        </p>
+                                        <p>16. Honour all cheques or other orders/instruments which may be drawn on the said account provided such cheques or orders/instruments are signed by me/us and to debit such cheques or orders/instrument s to the said account whether such account be for the time being in credit or overdrawn in consequences of such debit without prejudice to your right to refuse to allow any overdraft or increase of overdraft and in consideration, I/We agree: </p>
+                                        <p>a. To assume full responsibility for the genuineness or correctness and validity of all endorsements appearing on all cheques, orders, bills, notes, negotiable instruments, receipts and/or other documents deposited in my/our account.</p>
+                                        <p>b. To be responsible for any repayment of any overdraft with interest and to comply with the Bank's rules and new rates as advised by the Bank from time to time.</p>
+                                        <p>c. To free the Bank from any responsibility for any loss or damage of funds deposited with the Bank due to any future government order, law, tax, embargo, moratorium, exchange restriction and/or all other causes beyond the Bank's control.</p>
+                                        <p>d. That all funds standing to my/our credit are payable on demand only on such local currency as may be in circulation</p>
+                                        <p>e. To be bound by any notification of change in the conditions governing the account directed to my/our last known address and any notice or letter sent to my/our last known address shall be considered as duly delivered and received by me/us at the time it would be delivered in the ordinary course of post.</p>
+                                        <p>f. Customers should not write out cheques in staff's name. All cheques for deposits should be made out in customer's name. 
+                                        </p>
+                                        <p>g. Customers should desist from transferring money from their accounts into staff's accounts. Impromptu cash pickups at the customer's premises by staff should not exceed N500,000.</p>
+                                        <p>h. Customers who wish to enjoy cash pick up services should makes a formal request which would be handled in accordance with the laid down procedure for cash pick up. Cash in excess of N500, 000 should be paid over the counter by the customer.
+                                        </p>
+                                        <p>i. That if a cheque credited to my/our individual account is returned dishonored, the same may be transmitted to me/us through my/our last known address either by bearer or by post.</p>
+                                        <p>j. And I/we note that the Bank will accept no liability whatsoever for funds handed to members of the staff outside banking hours or outside hours or outside the bank's premises.
+                                        </p>
+                                        <p>k. That my/our attention has also drawn to the necessity of safe guarding my/our passwords and access codes to the bank's non-branch channels including, but not limited to ATM, Internet Banking, Telephone Banking, Mobile Banking and SMS Banking, so that unauthorized persons are unable to gain access to it and to the fact that neglect of this precaution may be a ground for any consequential loss being charged to my/our account.
+                                        </p>
+                                        <p>l. That any Bank is under no obligation to honour any cheques(s) drawn on the account unless there are sufficient fund in the account to cover the value of the said cheque(s) and I/we understand and agree that any such cheque(s) may be returned to me/us unpaid, but if paid, we are obliged to repay the bank on demand.
+                                        </p>
+                                        <p>m. That any disagreements with entries on my/our bank statements will be made by me/us within 15 workings days of the dispatched of the bank statements. </p>
+                                        <p>Failing receipt by the Bank of a notice of disagreement of the entries within 15days from the date of dispatch of my/our Bank statements as rendered is correct.
+                                        </p>
+                                        <p>n. That any sum standing to the debit of the current account shall be liable to interest charges at the rate fixed by the bank from time to time. The bank is authorized to debit from the account the usual banking charges, interest commission, and any service charge set by Management from time to time.</p>
+                                        <p>Electronic Banking</p>
+                                        <p>We confirm and agree that the following terms and conditions shall govern my/our Electronic Banking transactions with the Bank. The following terms and conditions shall govern the Bank's e-Banking Services.</p>
+                                        <p></p>
+                                        <p></p>
+                                        <p></p>
+                                        <p></p>
+
+
+                                </div>
+                                  
+                                   
+                                <div class="modal-footer">
+                                  
+                                </div>
+                              </ng-template>
+
+                            <div class="my-overlay" *ngIf="showOverlay">
+                                <i class="fa fa-spinner fa-spin" aria-hidden="true"></i>
+                              </div>
+                            <div [ngStyle]="{display:confirm}">
+                                
+                                <span style="color: #383e7e;"><h2>CONFIRM DETAILS</h2></span>
+                                
+                                
+                                <li class="list-group-item"><h3>Last Name: {{obj.LastName}}</h3></li>
+                                <li class="list-group-item"><h3>First Name: {{obj.FirstName}}</h3></li>
+                                <li class="list-group-item"><h3>middle Name: {{obj.MiddleName}}</h3></li>
+                                <li class="list-group-item"><h3>Gender: <span *ngIf="obj.Gender==1">Female</span><span *ngIf="obj.Gender==0">Male</span></h3></li>
+                                <li class="list-group-item"><h3>Date of Birth: {{obj.DateOfBirth}}</h3></li>
+                                <li class="list-group-item"><h3>Address: {{obj.Address}}</h3></li>
+                                <li class="list-group-item"><h3>Email: {{obj.Email}}</h3></li>
+                                <li class="list-group-item"><h3>Account Type: <span *ngIf="acctType=='100'">Savings Account</span><span *ngIf="acctType=='200'">Current Account</span><span *ngIf="acctType=='300'">Corporate Account</span></h3></li>
+                                <li class="list-group-item"><button class="btn btn-warning btn-large" (click)="editApplication()">Edit Details</button> &nbsp; <button class="btn btn-primary btn-large" (click)="SubmitApplication(obj)">{{btn}}</button> </li>
+                               
+                            </div>
+                            <div class="md-form">
+                               <form class="needs-validation" #accountopeningform="ngForm" >
+                                <div [ngStyle]="{display:form}" class="responsive" >
+                                    <span style="color: #383e7e;"><h2>INSTANT ACCOUNT OPENING FORM</h2></span>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <!--<label class="control-label">Last Name</label>-->
+                                                <span class="input-group-addon text-color">Last Name</span>
+                                                <input type="text" required id="LastName" class="form-control" name="LastName" [(ngModel)]="obj.LastName" #LastName="ngModel" required />
+                                             <div [hidden]="LastName.valid || LastName.pristine" class="alert alert-danger">
+                                                    Last Name is required
+                                             </div>
+                                    </div>
+                                    </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                            <span class="input-group-addon text-color">First Name</span>
+                                            <input type="text" class="form-control" [(ngModel)]="obj.FirstName" name="FirstName" required #FirstName="ngModel" id="FirstName" />
+                                            <div [hidden]="FirstName.valid || FirstName.pristine" class="alert alert-danger">
+                                                First Name is required
+                                         </div>
+                                        </div></div>
+
+
+                                    </div>
+                                
+                            
+                            
+                        
+                        <div class="row">
+                            <div class="col-md-6"><div class="form-group">
+                                <span class="input-group-addon text-color">Middle Name</span>
+                                <input type="text" class="form-control" [(ngModel)]="obj.MiddleName" name="MiddleName" id="MiddleName" #MiddleName  />
+                           
+                            </div></div>
+                            <div class="col-md-6"><div class="form-group">
+                                <span class="input-group-addon text-color">Date of Birth</span>
+                                <input type="date" class="form-control" [(ngModel)]="obj.DateOfBirth" name="DateOfBirth" id="DateOfBirth" #DateOfBirth="ngModel" required  />
+                                <div [hidden]="DateOfBirth.valid || DateOfBirth.pristine" class="alert alert-danger">
+                                    Date of Birth is required
+                             </div>
+                            </div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6"><div class="form-group">
+                                <span class="input-group-addon text-color">Gender</span>
+                                <select class="form-control" [(ngModel)]="obj.Gender" name="Gender" id="Gender" #Gender="ngModel" required>
+                                    <option value="">--Gender--</option>
+                                    <option value="1">Female</option>
+                                    <option value="0">Male</option>
+                                    
+                                </select>
+                                <div [hidden]="Gender.valid || Gender.pristine" class="alert alert-danger">
+                                    Gender is required
+                             </div>
+                            </div></div>
+                            <div class="col-md-6"><div class="form-group">
+                                <span class="input-group-addon text-color">Phone</span>
+                                <input type="text" class="form-control" [(ngModel)]="obj.PhoneNumber" name="PhoneNumber" #PhoneNumber="ngModel" required id="PhoneNumber"/>
+                                <div [hidden]="PhoneNumber.valid || PhoneNumber.pristine" class="alert alert-danger">
+                                    Phone is required
+                             </div>
+                            </div></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                <span class="input-group-addon text-color">Email</span>
+                                <input type="email" class="form-control" [(ngModel)]="obj.Email" name="Email" id="Email" #Email="ngModel" required />
+                                <div [hidden]="Email.valid || Email.pristine" class="alert alert-danger">
+                                    Email is required
+                             </div>
+                            </div>
+                        </div>
+                        </div>   
+                        <div class="row">
+                            <div class="col-md-6"><div class="form-group">
+                                <span class="input-group-addon text-color">Address</span>
+                                <textarea  class="form-control" required [(ngModel)]="obj.Address" name="Address" #Address="ngModel" required id="Address"></textarea>
+                                <div [hidden]="Address.valid || Address.pristine" class="alert alert-danger">
+                                    Address is required
+                             </div>
+                            </div></div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <span class="input-group-addon text-color">Type of Account</span>
+                                <select name="type" class="form-control" [(ngModel)]="acctType" id="acctType" required  >
+                                    <option value="">Select Account Type</option>
+                                    <option value="100">Savings Account</option>
+                                    <option value="101">Easy Savings Account</option>
+                                    <option value="102">Kiddies Savings Account</option>
+                                    <option value="103">Mandatory Savings Account</option>
+                                    <option value="104">Salary Savings Account</option>
+                                    <option value="105">Micro Credit-Savings Account</option>
+                                    <option value="106">Staff Savings Account</option>
+                                    <option value="107">Micro Credit-Mandatory Savings Account</option>
+                                    <option value="108">Quick Savings Account</option>
+                                    <option value="302">Treasury Savings Account</option>
+
+                                    <option>----All Current Account----</option>
+                                    <option value="200">Current Individual Account</option>
+                                    <option value="201">Quick Current Account</option>
+                                    <option value="202">Corporate Account</option>
+                                    <option value="203">Salary Current Account</option>
+                                    <option value="204">Asset Current Account</option>
+                                    <option value="205">Staff Current Account</option>
+                                    <option value="206">Quick Cash Current Account</option>
+                                    
+                                    <option>----All Loan Account----</option>
+                                    <option value="400">Rebiz Individual Loan Account</option>
+                                    <option value="401">Rebiz Corporate Loan Account</option>
+                                    <option value="402">Term Loan Account</option>
+                                    <option value="403">Assets Financing Account</option>
+                                    <option value="404">Contract Financing Account</option>
+                                    <option value="405">Quick Loan Uniform Officers Account</option>
+                                    <option value="406">Micro Credit Account</option>
+                                    <option value="407">Staff Loan Account</option>
+                                    <option value="408">Quick Loan Account</option>
+                                    <option value="409">Salad Loan Account</option>
+                                    <option value="410">Quick Cash Loan Account</option>
+                                    <option value="411">Business Term Loan Account</option>
+                                </select>
+                                
+                            </div>
+                        </div>
+                        </div>
+                             
+                        <div class="row">
+                            
+                        <div class="col-md-6">
+                           
+                        </div>
+                        </div>     
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                <div [hidden]="captcha">
+                                    <span class="input-group-addon">Proof you are human</span>
+                                    
+                                    <re-captcha (resolved)="resolved($event)" siteKey="6Le4bRweAAAAAA3s4_O_38uTdk9xHPUDjxurz1tU"></re-captcha>
+                                </div>
+                                
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="row">
+                           
+                            <div class="col-lg-12">
+                                <!--<button class="btn btn-default btn-danger" type="button" (click)="onReset()">Reset</button>-->
+                            <div [hidden]="!captcha">
+                                
+                                <span class="text-color">By clicking on Confirm Details button below you agree to the <a href="#" (click)="open(content)"> Terms and conditions</a> of Baines Credit Microfinance Bank Online Account Opening </span>
+                                <p><button class="btn btn-primary btn-large" [disabled]="!accountopeningform.form.valid" (click)="confirmdetails()">Confirm Details</button></p>
+                            </div>
+                            </div>
+                        </div>         
+                       
+                        </div>
+                       
+                        </form>
+                        </div>
+                    </div>
+                                              
+                   
+                </div></div>
+            </div>
+        </div>
+       </div>
+    
+    
+</section>
+
+
+
+
+
+
+
