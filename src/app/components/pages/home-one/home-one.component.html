@@ -127,7 +127,7 @@
                                 <li class="list-group-item"><h3>Date of Birth: {{obj.DateOfBirth}}</h3></li>
                                 <li class="list-group-item"><h3>Address: {{obj.Address}}</h3></li>
                                 <li class="list-group-item"><h3>Email: {{obj.Email}}</h3></li>
-                                <li class="list-group-item"><h3>Account Type: <span *ngIf="acctType=='100'">Savings Account</span><span *ngIf="acctType=='200'">Current Account</span><span *ngIf="acctType=='300'">Corporate Account</span></h3></li>
+                                <li class="list-group-item"><h3>Account Type: {{obj.ProductCode2}}</h3></li>
                                 <li class="list-group-item"><button class="btn btn-warning btn-large" (click)="editApplication()">Edit Details</button> &nbsp; <button class="btn btn-primary btn-large" (click)="SubmitApplication(obj)">{{btn}}</button> </li>
                                
                             </div>
@@ -219,7 +219,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                 <span class="input-group-addon text-color">Type of Account</span>
-                                <select name="type" class="form-control" [(ngModel)]="acctType" id="acctType" required  >
+                                <select name="type" class="form-control" [(ngModel)]="obj.ProductCode2" id="ProductCode2"  required  >
                                     <option value="">Select Account Type</option>
                                     <option value="100">Savings Account</option>
                                     <option value="101">Easy Savings Account</option>
@@ -255,6 +255,7 @@
                                     <option value="410">Quick Cash Loan Account</option>
                                     <option value="411">Business Term Loan Account</option>
                                 </select>
+                                
                                 
                             </div>
                         </div>

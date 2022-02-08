@@ -98,6 +98,7 @@ this.email="uthman4u2nv@yahoo.com";
       this.msg="none";
       this.confirm="none";
       this.error="none";
+      this.router.navigate(['']);
   }
   editApplication(){
     this.form="block";
@@ -113,7 +114,7 @@ this.email="uthman4u2nv@yahoo.com";
       this.AccountNumber=d.AccountNumber;
       this.CustomerID=d.CustomerID;
       this.FullName=d.FullName;
-      this.obj={FirstName: "",MiddleName: "",LastName: "",Email: "",DateOfBirth: "",Gender: 0,Address: "",PhoneNumber: "",ProductCode2: "100"}
+      this.obj={FirstName: "",MiddleName: "",LastName: "",Email: "",DateOfBirth: "",Gender: 0,Address: "",PhoneNumber: "",ProductCode2: "0"}
       this.form="none";
       this.msg="block";
       this.confirm="none";

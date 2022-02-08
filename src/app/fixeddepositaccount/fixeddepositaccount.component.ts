@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApplicationService } from 'src/app/services/application.service';
-import { AppReq } from 'src/models/application';
+import { AppReq,FixedReq } from 'src/models/application';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 import {
@@ -23,8 +23,9 @@ export class FixeddepositaccountComponent implements OnInit {
   formGroup: FormGroup;
   closeResult='';
   //public showOverlay = true;
-  @Input() obj={FirstName: "",MiddleName: "",LastName: "",Email: "",DateOfBirth: "",Gender: 0,Address: "",PhoneNumber: "",ProductCode2: "100"}
+  @Input() obj={Amount: 10,InterestRate: 0,Tenure: 1,CustomerID: "",LiquidationAccount: "",ProductCode: ""}
   AccountNumber:string="";
+  SuccessMessage:string="";
   CustomerID:string="";
   FullName:string="";
   btn:string="Submit Application";
@@ -99,6 +100,7 @@ this.email="uthman4u2nv@yahoo.com";
       this.msg="none";
       this.confirm="none";
       this.error="none";
+      this.router.navigate(['fixeddepositaccount']);
   }
   editApplication(){
     this.form="block";
@@ -106,15 +108,25 @@ this.email="uthman4u2nv@yahoo.com";
       this.confirm="none";
       this.error="none";
   }
-  SubmitApplication(data:AppReq){
+  onChange(deviceValue) {
+    console.log(deviceValue);
+    if(deviceValue==300){
+      this.obj.InterestRate=3
+    }else if(deviceValue==301){
+      this.obj.InterestRate=5
+    }else{
+      this.obj.InterestRate=1
+    }
+}
+  SubmitApplication(data:FixedReq){
     this.showOverlay=true;    
     
-    this.aps.SubmitApplication(data).subscribe(d=>{
-      if(d.AccountNumber !==null){
-      this.AccountNumber=d.AccountNumber;
-      this.CustomerID=d.CustomerID;
-      this.FullName=d.FullName;
-      this.obj={FirstName: "",MiddleName: "",LastName: "",Email: "",DateOfBirth: "",Gender: 0,Address: "",PhoneNumber: "",ProductCode2: "100"}
+    this.aps.SubmitFixedApplication(data).subscribe(d=>{
+      console.log(data);
+      console.log(d);
+      if(d.responseCode =="00"){
+      this.SuccessMessage=d.responseMessage
+      this.obj={Amount: 0,InterestRate: 0,Tenure: 1,CustomerID: "",LiquidationAccount: "",ProductCode: ""}
       this.form="none";
       this.msg="block";
       this.confirm="none";

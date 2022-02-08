@@ -30,10 +30,9 @@
                             
                            
                             <div [ngStyle]="{display:msg}" class="alert alert-success">
-                                <li class="list-group-item"><h3>Account Opened Successfully</h3></li>
-                                <li class="list-group-item"><h3>Account Number: {{AccountNumber}}</h3></li>
-                                <li class="list-group-item"><h3>Customer ID: {{CustomerID}}</h3></li>
-                                <li class="list-group-item"><h3>Account Name: {{FullName}}</h3></li>
+                                <li class="list-group-item"><h3>{{SuccessMessage}}</h3></li>
+                                
+                                
                                 <li class="list-group-item"><button class="btn btn-primary btn-large" (click)="NewApplication()">New Application</button></li>
                             </div>
                             <div [ngStyle]="{display:error}" class="alert alert-danger">
@@ -120,39 +119,36 @@
                                 <span style="color: #383e7e;"><h2>CONFIRM DETAILS</h2></span>
                                 
                                 
-                                <li class="list-group-item"><h3>Last Name: {{obj.LastName}}</h3></li>
-                                <li class="list-group-item"><h3>First Name: {{obj.FirstName}}</h3></li>
-                                <li class="list-group-item"><h3>middle Name: {{obj.MiddleName}}</h3></li>
-                                <li class="list-group-item"><h3>Gender: <span *ngIf="obj.Gender==1">Female</span><span *ngIf="obj.Gender==0">Male</span></h3></li>
-                                <li class="list-group-item"><h3>Date of Birth: {{obj.DateOfBirth}}</h3></li>
-                                <li class="list-group-item"><h3>Address: {{obj.Address}}</h3></li>
-                                <li class="list-group-item"><h3>Email: {{obj.Email}}</h3></li>
-                                <li class="list-group-item"><h3>Account Type: <span *ngIf="acctType=='100'">Savings Account</span><span *ngIf="acctType=='200'">Current Account</span><span *ngIf="acctType=='300'">Corporate Account</span></h3></li>
+                                <li class="list-group-item"><h3>Liquidation Account: {{obj.LiquidationAccount}}</h3></li>
+                                <li class="list-group-item"><h3>Customer ID: {{obj.CustomerID}}</h3></li>
+                                <li class="list-group-item"><h3>Amount: {{obj.Amount | currency:'N'}}</h3></li>                                
+                                <li class="list-group-item"><h3>Tenure: {{obj.Tenure}}</h3></li>
+                                <li class="list-group-item"><h3>Rate: {{obj.InterestRate}}%</h3></li>                                                        
                                 <li class="list-group-item"><button class="btn btn-warning btn-large" (click)="editApplication()">Edit Details</button> &nbsp; <button class="btn btn-primary btn-large" (click)="SubmitApplication(obj)">{{btn}}</button> </li>
                                
                             </div>
                             <div class="md-form">
                                <form class="needs-validation" #accountopeningform="ngForm" >
                                 <div [ngStyle]="{display:form}" class="responsive" >
-                                    <span style="color: #383e7e;"><h2>INSTANT ACCOUNT OPENING FORM</h2></span>
+                                    <span style="color: #383e7e;"><h3>FIXED DEPOSIT ACCOUNT OPENING FORM</h3></span>
                                     
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <!--<label class="control-label">Last Name</label>-->
-                                                <span class="input-group-addon text-color">Last Name</span>
-                                                <input type="text" required id="LastName" class="form-control" name="LastName" [(ngModel)]="obj.LastName" #LastName="ngModel" required />
-                                             <div [hidden]="LastName.valid || LastName.pristine" class="alert alert-danger">
-                                                    Last Name is required
+                                                <span class="input-group-addon text-color">Account Number<small>(Liquidation Account)</small></span>
+                                                <input type="text" required id="LiquidationAccount" class="form-control" name="LiquidationAccount" [(ngModel)]="obj.LiquidationAccount" #LiquidationAccount="ngModel" required />
+                                             <div [hidden]="LiquidationAccount.valid || LiquidationAccount.pristine" class="alert alert-danger">
+                                                    Liquidation Account Number is required
                                              </div>
                                     </div>
                                     </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                            <span class="input-group-addon text-color">First Name</span>
-                                            <input type="text" class="form-control" [(ngModel)]="obj.FirstName" name="FirstName" required #FirstName="ngModel" id="FirstName" />
-                                            <div [hidden]="FirstName.valid || FirstName.pristine" class="alert alert-danger">
-                                                First Name is required
+                                            <span class="input-group-addon text-color">Customer ID</span>
+                                            <input type="text" class="form-control" [(ngModel)]="obj.CustomerID" name="CustomerID" required #CustomerID="ngModel" id="CustomerID" />
+                                            <div [hidden]="CustomerID.valid || CustomerID.pristine" class="alert alert-danger">
+                                                Customer ID is required
                                          </div>
                                         </div></div>
 
@@ -163,101 +159,49 @@
                             
                         
                         <div class="row">
-                            <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon text-color">Middle Name</span>
-                                <input type="text" class="form-control" [(ngModel)]="obj.MiddleName" name="MiddleName" id="MiddleName" #MiddleName  />
-                           
-                            </div></div>
-                            <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon text-color">Date of Birth</span>
-                                <input type="date" class="form-control" [(ngModel)]="obj.DateOfBirth" name="DateOfBirth" id="DateOfBirth" #DateOfBirth="ngModel" required  />
-                                <div [hidden]="DateOfBirth.valid || DateOfBirth.pristine" class="alert alert-danger">
-                                    Date of Birth is required
-                             </div>
-                            </div></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon text-color">Gender</span>
-                                <select class="form-control" [(ngModel)]="obj.Gender" name="Gender" id="Gender" #Gender="ngModel" required>
-                                    <option value="">--Gender--</option>
-                                    <option value="1">Female</option>
-                                    <option value="0">Male</option>
-                                    
-                                </select>
-                                <div [hidden]="Gender.valid || Gender.pristine" class="alert alert-danger">
-                                    Gender is required
-                             </div>
-                            </div></div>
-                            <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon text-color">Phone</span>
-                                <input type="text" class="form-control" [(ngModel)]="obj.PhoneNumber" name="PhoneNumber" #PhoneNumber="ngModel" required id="PhoneNumber"/>
-                                <div [hidden]="PhoneNumber.valid || PhoneNumber.pristine" class="alert alert-danger">
-                                    Phone is required
-                             </div>
-                            </div></div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                <span class="input-group-addon text-color">Email</span>
-                                <input type="email" class="form-control" [(ngModel)]="obj.Email" name="Email" id="Email" #Email="ngModel" required />
-                                <div [hidden]="Email.valid || Email.pristine" class="alert alert-danger">
-                                    Email is required
-                             </div>
-                            </div>
-                        </div>
-                        </div>   
-                        <div class="row">
-                            <div class="col-md-6"><div class="form-group">
-                                <span class="input-group-addon text-color">Address</span>
-                                <textarea  class="form-control" required [(ngModel)]="obj.Address" name="Address" #Address="ngModel" required id="Address"></textarea>
-                                <div [hidden]="Address.valid || Address.pristine" class="alert alert-danger">
-                                    Address is required
-                             </div>
-                            </div></div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <span class="input-group-addon text-color">Type of Account</span>
-                                <select name="type" class="form-control" [(ngModel)]="acctType" id="acctType" required  >
+                                <span class="input-group-addon text-color">Type of Fixed Deposit Account</span>
+                                <select name="type" class="form-control" [(ngModel)]="obj.ProductCode" id="ProductCode" required (change)="onChange($event.target.value)"  >
                                     <option value="">Select Account Type</option>
-                                    <option value="100">Savings Account</option>
-                                    <option value="101">Easy Savings Account</option>
-                                    <option value="102">Kiddies Savings Account</option>
-                                    <option value="103">Mandatory Savings Account</option>
-                                    <option value="104">Salary Savings Account</option>
-                                    <option value="105">Micro Credit-Savings Account</option>
-                                    <option value="106">Staff Savings Account</option>
-                                    <option value="107">Micro Credit-Mandatory Savings Account</option>
-                                    <option value="108">Quick Savings Account</option>
-                                    <option value="302">Treasury Savings Account</option>
-
-                                    <option>----All Current Account----</option>
-                                    <option value="200">Current Individual Account</option>
-                                    <option value="201">Quick Current Account</option>
-                                    <option value="202">Corporate Account</option>
-                                    <option value="203">Salary Current Account</option>
-                                    <option value="204">Asset Current Account</option>
-                                    <option value="205">Staff Current Account</option>
-                                    <option value="206">Quick Cash Current Account</option>
+                                    <option value="300">Call Deposit Account</option>
+                                    <option value="301">Fixed Deposit Account</option>
                                     
-                                    <option>----All Loan Account----</option>
-                                    <option value="400">Rebiz Individual Loan Account</option>
-                                    <option value="401">Rebiz Corporate Loan Account</option>
-                                    <option value="402">Term Loan Account</option>
-                                    <option value="403">Assets Financing Account</option>
-                                    <option value="404">Contract Financing Account</option>
-                                    <option value="405">Quick Loan Uniform Officers Account</option>
-                                    <option value="406">Micro Credit Account</option>
-                                    <option value="407">Staff Loan Account</option>
-                                    <option value="408">Quick Loan Account</option>
-                                    <option value="409">Salad Loan Account</option>
-                                    <option value="410">Quick Cash Loan Account</option>
-                                    <option value="411">Business Term Loan Account</option>
                                 </select>
                                 
                             </div>
                         </div>
+                            <div class="col-md-6"><div class="form-group">
+                                <span class="input-group-addon text-color">Amount</span>
+                                <input type="number" class="form-control" [(ngModel)]="obj.Amount" name="Amount" id="Amount" #Amount="ngModel" required  />
+                                <div [hidden]="Amount.valid || Amount.pristine" class="alert alert-danger">
+                                    Amount is required
+                             </div>
+                            </div></div>
+                           
+                            
+                        </div>
+                        
+                       
+                        <div class="row">
+                            
+                        <div class="col-md-6"><div class="form-group">
+                            <span class="input-group-addon text-color">Tenure</span>
+                            <input type="number" class="form-control" [(ngModel)]="obj.Tenure" name="Tenure" id="Tenure" #Tenure="ngModel" required  />
+                            <div [hidden]="Tenure.valid || Tenure.pristine" class="alert alert-danger">
+                                Tenure is required
+                         </div>
+                        </div></div>
+                            <!--   Rate-->
+                            <div class="col-md-6"><div class="form-group">
+                                <span class="input-group-addon text-color">Interest Rate</span>
+                                <input type="number" class="form-control" [disabled]="true" [(ngModel)]="obj.InterestRate" name="InterestRate" id="InterestRate" #InterestRate="ngModel" required  />
+                                <div [hidden]="InterestRate.valid || InterestRate.pristine" class="alert alert-danger">
+                                    Interest Rate is required
+                             </div>
+                            </div></div>
+                           
+                            
                         </div>
                              
                         <div class="row">
