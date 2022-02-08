@@ -27,6 +27,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+import { FixeddepositaccountComponent } from './fixeddepositaccount/fixeddepositaccount.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ErrorComponent,
     TeamComponent,
     TeamTwoComponent,
-    ContactComponent
+    ContactComponent,
+    FixeddepositaccountComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +61,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     HttpClientModule,
     RecaptchaModule,
-    NgbModule
+    NgbModule,
+    NgBootstrapFormValidationModule.forRoot(),
+    NgBootstrapFormValidationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

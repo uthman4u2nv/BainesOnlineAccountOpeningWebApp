@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  applicationurl:'https://bainesaccountopeningapi.herokuapp.com/OnlineApply'
+  applicationurl:'https://bainesaccountopeningapi.herokuapp.com/OnlineApply',
+  fixeddepositurl:'https://bainesaccountopeningapi.herokuapp.com/OpenFixedDepositAccount'
 };
 
 /*

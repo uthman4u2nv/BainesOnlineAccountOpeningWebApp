@@ -1,6 +1,8 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ApplicationService } from 'src/app/services/application.service';
 import { AppReq } from 'src/models/application';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+
 import {
   Router,
   Event as RouterEvent,
@@ -17,6 +19,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./home-one.component.scss']
 })
 export class HomeOneComponent implements OnInit {
+  formGroup: FormGroup;
   closeResult='';
   //public showOverlay = true;
   @Input() obj={FirstName: "",MiddleName: "",LastName: "",Email: "",DateOfBirth: "",Gender: 0,Address: "",PhoneNumber: "",ProductCode2: "100"}
@@ -38,33 +41,26 @@ export class HomeOneComponent implements OnInit {
   constructor(public aps:ApplicationService,private router: Router,private modalService: NgbModal) {
 this.captcha="";
 this.email="uthman4u2nv@yahoo.com";
-/*router.events.subscribe((event: RouterEvent) => {
-  this.navigationInterceptor(event)
-})*/
-
-   }
-   // Shows and hides the loading spinner during RouterEvent changes
-  /*navigationInterceptor(event: RouterEvent): void {
-    if (event instanceof NavigationStart) {
-      this.showOverlay = 'true';
-    }
-    if (event instanceof NavigationEnd) {
-      this.showOverlay = 'false';
-    }
-
-    // Set loading state to false in both of the below events to hide the spinner in case a request fails
-    if (event instanceof NavigationCancel) {
-      this.showOverlay = 'false';
-    }
-    if (event instanceof NavigationError) {
-      this.showOverlay = 'false';
-    }
-  }*/
+  }
 
   ngOnInit(): void {
+    this.formGroup = new FormGroup({
+      Email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+      ]),
+      LastName: new FormControl('', [
+        Validators.required,
+        //Validators.minLength(8),
+        //Validators.maxLength(20)
+      ])
+    });
+  }
+  onReset() {
+    this.formGroup.reset();
   }
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title',size: 'xl' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
