@@ -122,8 +122,8 @@
                                 <li class="list-group-item"><h3>Liquidation Account: {{obj.LiquidationAccount}}</h3></li>
                                 <li class="list-group-item"><h3>Customer ID: {{obj.CustomerID}}</h3></li>
                                 <li class="list-group-item"><h3>Amount: {{obj.Amount | currency:'N'}}</h3></li>                                
-                                <li class="list-group-item"><h3>Tenure: {{obj.Tenure}}</h3></li>
-                                <li class="list-group-item"><h3>Rate: {{obj.InterestRate}}%</h3></li>                                                        
+                                <li class="list-group-item"><h3>Tenure: {{obj.Tenure}} days</h3></li>
+                                <li class="list-group-item"><h3>Rate: {{obj.InterestRate}} %</h3></li>                                                        
                                 <li class="list-group-item"><button class="btn btn-warning btn-large" (click)="editApplication()">Edit Details</button> &nbsp; <button class="btn btn-primary btn-large" (click)="SubmitApplication(obj)">{{btn}}</button> </li>
                                
                             </div>
@@ -160,20 +160,32 @@
                         
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
+                               <!-- <div class="form-group">
                                 <span class="input-group-addon text-color">Type of Fixed Deposit Account</span>
-                                <select name="type" class="form-control" [(ngModel)]="obj.ProductCode" id="ProductCode" required (change)="onChange($event.target.value)"  >
-                                    <option value="">Select Account Type</option>
-                                    <option value="300">Call Deposit Account</option>
-                                    <option value="301">Fixed Deposit Account</option>
+                                <select name="type" class="form-control" [disabled]="true" [(ngModel)]="obj.ProductCode" id="ProductCode" required>
+                                    
+                                    <option value="300">Fixed Deposit Account</option>
+                                    
                                     
                                 </select>
                                 
+                            </div>-->
+                            <div class="form-group">
+                                <span class="input-group-addon text-color">Tenure</span>
+                                <select class="form-control" [(ngModel)]="obj.Tenure" name="Tenure" id="Tenure" #Tenure="ngModel" required (change)="onChange($event.target.value)">
+                                    <option value="90">90 Days</option>
+                                    <option value="180">180 Days</option>
+                                    <option value="270">270 Days</option>
+                                    <option value="365">1 year</option>
+                                    </select>
+                                <div [hidden]="Tenure.valid || Tenure.pristine" class="alert alert-danger">
+                                    Tenure is required
+                             </div>
                             </div>
                         </div>
                             <div class="col-md-6"><div class="form-group">
                                 <span class="input-group-addon text-color">Amount</span>
-                                <input type="number" class="form-control" [(ngModel)]="obj.Amount" name="Amount" id="Amount" #Amount="ngModel" required  />
+                                <input type="number" min="1000000" class="form-control" [(ngModel)]="obj.Amount" name="Amount" id="Amount" value="1000000" #Amount="ngModel" required  (change)="onChange($event.target.value)"  />
                                 <div [hidden]="Amount.valid || Amount.pristine" class="alert alert-danger">
                                     Amount is required
                              </div>
@@ -183,19 +195,13 @@
                         </div>
                         
                        
-                        <div class="row">
+                        <!--<div class="row">
                             
-                        <div class="col-md-6"><div class="form-group">
-                            <span class="input-group-addon text-color">Tenure</span>
-                            <input type="number" class="form-control" [(ngModel)]="obj.Tenure" name="Tenure" id="Tenure" #Tenure="ngModel" required  />
-                            <div [hidden]="Tenure.valid || Tenure.pristine" class="alert alert-danger">
-                                Tenure is required
-                         </div>
-                        </div></div>
-                            <!--   Rate-->
+                        <div class="col-md-6"></div>
+                            
                             <div class="col-md-6"><div class="form-group">
                                 <span class="input-group-addon text-color">Interest Rate</span>
-                                <input type="number" class="form-control" [disabled]="true" [(ngModel)]="obj.InterestRate" name="InterestRate" id="InterestRate" #InterestRate="ngModel" required  />
+                                <input type="text" class="form-control" [disabled]="true" [(ngModel)]="obj.InterestRate" name="InterestRate" id="InterestRate" #InterestRate="ngModel" required  />
                                 <div [hidden]="InterestRate.valid || InterestRate.pristine" class="alert alert-danger">
                                     Interest Rate is required
                              </div>
@@ -203,13 +209,8 @@
                            
                             
                         </div>
-                             
-                        <div class="row">
-                            
-                        <div class="col-md-6">
-                           
-                        </div>
-                        </div>     
+                    -->
+                          
                         <div class="row" style="margin-top: 20px;">
                             <div class="col-md-6">
                                 <div class="form-group">

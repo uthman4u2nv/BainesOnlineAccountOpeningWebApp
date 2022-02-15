@@ -23,7 +23,7 @@ export class FixeddepositaccountComponent implements OnInit {
   formGroup: FormGroup;
   closeResult='';
   //public showOverlay = true;
-  @Input() obj={Amount: 10,InterestRate: 0,Tenure: 1,CustomerID: "",LiquidationAccount: "",ProductCode: ""}
+  @Input() obj={Amount: 1000000,InterestRate: 10,Tenure: 90,CustomerID: "",LiquidationAccount: "",ProductCode: "300"}
   AccountNumber:string="";
   SuccessMessage:string="";
   CustomerID:string="";
@@ -83,12 +83,12 @@ this.email="uthman4u2nv@yahoo.com";
     console.log('Resolved captcha with response: '+this.captcha);
   }
   confirmdetails(){
-    var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
+    /**var form = document.getElementsByClassName('needs-validation')[0] as HTMLFormElement;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-    form.classList.add('was-validated');
+    form.classList.add('was-validated');**/
 
     this.form="none";
       this.msg="none";
@@ -108,15 +108,114 @@ this.email="uthman4u2nv@yahoo.com";
       this.confirm="none";
       this.error="none";
   }
+  keyPress(event: KeyboardEvent) {
+    let t=this.obj.Tenure;
+    console.log("Tenure:"+t +"Event:"+event);
+    
+}
+between(x, min, max) {
+  return x >= min && x <= max;
+}
+
   onChange(deviceValue) {
-    console.log(deviceValue);
-    if(deviceValue==300){
-      this.obj.InterestRate=3
-    }else if(deviceValue==301){
-      this.obj.InterestRate=5
-    }else{
-      this.obj.InterestRate=1
+    
+    let t=this.obj.Tenure;
+    
+    let nValue=parseFloat(deviceValue);
+    /**BETWEEN 1m to 4.9m */
+    if (this.between(nValue, 1000000, 4900000) && t.toString()==="90") {
+      // something
+      this.obj.InterestRate=10;
+      console.log("Within range"+ this.obj.InterestRate);
     }
+    if (this.between(nValue, 1000000, 4900000) && t.toString()==="180") {
+      // something
+      this.obj.InterestRate=14;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 1000000, 4900000) && t.toString()==="270") {
+      // something
+      this.obj.InterestRate=16;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 1000000, 4900000) && t.toString()==="365") {
+      // something
+      this.obj.InterestRate=17;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    /**END 1m-4.9m */
+
+    /**start 5m to 9.9m */
+    if (this.between(nValue, 5000000, 9900000) && t.toString()==="90") {
+      // something
+      this.obj.InterestRate=11;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 5000000, 9900000) && t.toString()==="180") {
+      // something
+      this.obj.InterestRate=15;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 5000000, 9900000) && t.toString()==="270") {
+      // something
+      this.obj.InterestRate=17;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 5000000, 9900000) && t.toString()==="365") {
+      // something
+      this.obj.InterestRate=18;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    /**end 5m to 9.9m */
+
+    /**start 10m to 49m */
+    if (this.between(nValue, 10000000, 49000000) && t.toString()==="90") {
+      // something
+      this.obj.InterestRate=12;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 10000000, 49000000) && t.toString()==="180") {
+      // something
+      this.obj.InterestRate=17;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 10000000, 49000000) && t.toString()==="270") {
+      // something
+      this.obj.InterestRate=18;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 10000000, 49000000) && t.toString()==="365") {
+      // something
+      this.obj.InterestRate=19;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    /**end 10m to 49m */
+
+    /**start 50m and above */
+    if (this.between(nValue, 50000000, 500000000) && t.toString()==="90") {
+      // something
+      this.obj.InterestRate=13;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 50000000, 500000000) && t.toString()==="180") {
+      // something
+      this.obj.InterestRate=18;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 50000000, 500000000) && t.toString()==="270") {
+      // something
+      this.obj.InterestRate=19;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    if (this.between(nValue, 50000000, 500000000) && t.toString()==="365") {
+      // something
+      this.obj.InterestRate=20;
+      console.log("Within range"+ this.obj.InterestRate);
+    }
+    /**end 50m and above */
+
+    
+    
 }
   SubmitApplication(data:FixedReq){
     this.showOverlay=true;    
@@ -126,7 +225,7 @@ this.email="uthman4u2nv@yahoo.com";
       console.log(d);
       if(d.responseCode =="00"){
       this.SuccessMessage=d.responseMessage
-      this.obj={Amount: 0,InterestRate: 0,Tenure: 1,CustomerID: "",LiquidationAccount: "",ProductCode: ""}
+      this.obj={Amount: 1000000,InterestRate: 10,Tenure: 90,CustomerID: "",LiquidationAccount: "",ProductCode: "300"}
       this.form="none";
       this.msg="block";
       this.confirm="none";
