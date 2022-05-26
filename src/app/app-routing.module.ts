@@ -20,7 +20,7 @@ import { ContactComponent } from './components/pages/contact/contact.component';
 import { FixeddepositaccountComponent } from './fixeddepositaccount/fixeddepositaccount.component';
 
 const routes: Routes = [
-    {path: '', component: HomeOneComponent},
+    {path: 'onlineaccountopening', component: HomeOneComponent},
     {path: 'home-two', component: HomeTwoComponent},
     {path: 'home-three', component: HomeThreeComponent},
     {path: 'about', component: AboutComponent},
@@ -37,7 +37,8 @@ const routes: Routes = [
     {path: 'team', component: TeamComponent},
     {path: 'team-two', component: TeamTwoComponent},
     {path: 'contact', component: ContactComponent},
-    {path: 'fixeddepositaccount',component:FixeddepositaccountComponent},
+    //{path: '',component:FixeddepositaccountComponent},
+    {path: '',component:HomeOneComponent},
     // Here add new pages component
 
     {path: '**', component: ErrorComponent} // This line will remain down from the whole pages component list

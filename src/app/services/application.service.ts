@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AppReq,Applicationresponse,FixedReq,FixedDepositResponse } from 'src/models/application';
+import { AppReq,Applicationresponse,FixedReq,FixedDepositResponse,BVNReq,BVNResp } from 'src/models/application';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -11,6 +11,7 @@ export class ApplicationService {
 
   appurl=environment.applicationurl;
   fixeddepositurl=environment.fixeddepositurl;
+  bvnurl=environment.bvnurl;
 
   constructor(public http:HttpClient) { }
 
@@ -19,5 +20,8 @@ export class ApplicationService {
   }
   SubmitFixedApplication(data:FixedReq): Observable<FixedDepositResponse>{
     return this.http.post<FixedDepositResponse>(this.fixeddepositurl,data,{responseType:'json'});
+  }
+  BvnValidation(data:BVNReq): Observable<BVNResp>{
+    return this.http.post<BVNResp>(this.bvnurl,data,{responseType:'json'});
   }
 }

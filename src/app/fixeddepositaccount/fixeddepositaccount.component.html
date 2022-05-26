@@ -185,7 +185,7 @@
                         </div>
                             <div class="col-md-6"><div class="form-group">
                                 <span class="input-group-addon text-color">Amount</span>
-                                <input type="number" min="1000000" class="form-control" [(ngModel)]="obj.Amount" name="Amount" id="Amount" value="1000000" #Amount="ngModel" required  (change)="onChange($event.target.value)"  />
+                                <input type="number" min="1000000" class="form-control" [(ngModel)]="obj.Amount" name="Amount" id="Amount" placeholder="1000000" #Amount="ngModel" required  (change)="onChange($event.target.value)"  />
                                 <div [hidden]="Amount.valid || Amount.pristine" class="alert alert-danger">
                                     Amount is required
                              </div>

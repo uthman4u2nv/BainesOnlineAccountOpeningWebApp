@@ -1,5 +1,16 @@
 import { NumberLiteralType } from "typescript";
 
+export interface BVNReq{
+    BVN:string;
+}
+export interface BVNResp{
+    phoneNumber:string;
+    FirstName:string;
+    LastName:string;
+    OtherNames:string;
+    DOB:string;
+}
+
 export interface AppReq{
     FirstName:string;
     MiddleName:string;

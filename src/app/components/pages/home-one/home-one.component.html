@@ -34,7 +34,7 @@
                                 <li class="list-group-item"><h3>Account Number: {{AccountNumber}}</h3></li>
                                 <li class="list-group-item"><h3>Customer ID: {{CustomerID}}</h3></li>
                                 <li class="list-group-item"><h3>Account Name: {{FullName}}</h3></li>
-                                <li class="list-group-item"><button class="btn btn-primary btn-large" (click)="NewApplication()">New Application</button></li>
+                                <li class="list-group-item"><a class="btn btn-primary btn-large" href="http://accountfunding.s3-website-us-east-1.amazonaws.com" target="_new">Fund My Account</a><!--<button class="btn btn-primary btn-large" (click)="NewApplication()">New Application</button>--></li>
                             </div>
                             <div [ngStyle]="{display:error}" class="alert alert-danger">
                                 <li class="list-group-item"><h3>Account cannot be opened</h3></li>
@@ -132,6 +132,7 @@
                                
                             </div>
                             <div class="md-form">
+                                <div *ngIf="displayM">
                                <form class="needs-validation" #accountopeningform="ngForm" >
                                 <div [ngStyle]="{display:form}" class="responsive" >
                                     <span style="color: #383e7e;"><h2>INSTANT ACCOUNT OPENING FORM</h2></span>
@@ -141,7 +142,7 @@
                                             <div class="form-group">
                                                 <!--<label class="control-label">Last Name</label>-->
                                                 <span class="input-group-addon text-color">Last Name</span>
-                                                <input type="text" required id="LastName" class="form-control" name="LastName" [(ngModel)]="obj.LastName" #LastName="ngModel" required />
+                                                <input type="text" [disabled]="true" required id="LastName" class="form-control" name="LastName" [(ngModel)]="obj.LastName" #LastName="ngModel" required />
                                              <div [hidden]="LastName.valid || LastName.pristine" class="alert alert-danger">
                                                     Last Name is required
                                              </div>
@@ -150,7 +151,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                             <span class="input-group-addon text-color">First Name</span>
-                                            <input type="text" class="form-control" [(ngModel)]="obj.FirstName" name="FirstName" required #FirstName="ngModel" id="FirstName" />
+                                            <input type="text" [disabled]="true" class="form-control" [(ngModel)]="obj.FirstName" name="FirstName" required #FirstName="ngModel" id="FirstName" />
                                             <div [hidden]="FirstName.valid || FirstName.pristine" class="alert alert-danger">
                                                 First Name is required
                                          </div>
@@ -165,12 +166,12 @@
                         <div class="row">
                             <div class="col-md-6"><div class="form-group">
                                 <span class="input-group-addon text-color">Middle Name</span>
-                                <input type="text" class="form-control" [(ngModel)]="obj.MiddleName" name="MiddleName" id="MiddleName" #MiddleName  />
+                                <input type="text" [disabled]="true" class="form-control" [(ngModel)]="obj.MiddleName" name="MiddleName" id="MiddleName" #MiddleName  />
                            
                             </div></div>
                             <div class="col-md-6"><div class="form-group">
                                 <span class="input-group-addon text-color">Date of Birth</span>
-                                <input type="date" class="form-control" [(ngModel)]="obj.DateOfBirth" name="DateOfBirth" id="DateOfBirth" #DateOfBirth="ngModel" required  />
+                                <input type="text" [disabled]="true" class="form-control" [(ngModel)]="obj.DateOfBirth"  name="DateOfBirth" id="DateOfBirth" #DateOfBirth="ngModel" required  />
                                 <div [hidden]="DateOfBirth.valid || DateOfBirth.pristine" class="alert alert-danger">
                                     Date of Birth is required
                              </div>
@@ -191,7 +192,7 @@
                             </div></div>
                             <div class="col-md-6"><div class="form-group">
                                 <span class="input-group-addon text-color">Phone</span>
-                                <input type="text" class="form-control" [(ngModel)]="obj.PhoneNumber" name="PhoneNumber" #PhoneNumber="ngModel" required id="PhoneNumber"/>
+                                <input type="text" [disabled]="true" class="form-control" [(ngModel)]="obj.PhoneNumber" name="PhoneNumber" #PhoneNumber="ngModel" required id="PhoneNumber"/>
                                 <div [hidden]="PhoneNumber.valid || PhoneNumber.pristine" class="alert alert-danger">
                                     Phone is required
                              </div>
@@ -220,28 +221,30 @@
                                 <div class="form-group">
                                 <span class="input-group-addon text-color">Type of Account</span>
                                 <select name="type" class="form-control" [(ngModel)]="obj.ProductCode2" id="ProductCode2"  required  >
-                                    <option value="">Select Account Type</option>
-                                    <option value="100">Savings Account</option>
+                                    <!--<option value="">Select Account Type</option>-->
+                                    <option value="100">Online Savings Account</option>
+                                    <!--<option value="104">Corporate Savings Account</option>
                                     <option value="101">Easy Savings Account</option>
                                     <option value="102">Kiddies Savings Account</option>
                                     <option value="103">Mandatory Savings Account</option>
-                                    <option value="104">Salary Savings Account</option>
+                                    
                                     <option value="105">Micro Credit-Savings Account</option>
                                     <option value="106">Staff Savings Account</option>
                                     <option value="107">Micro Credit-Mandatory Savings Account</option>
                                     <option value="108">Quick Savings Account</option>
-                                    <option value="302">Treasury Savings Account</option>
+                                    <option value="302">Treasury Savings Account</option>-->
 
-                                    <option>----All Current Account----</option>
+                                    <!--<option>----All Current Account----</option>
                                     <option value="200">Current Individual Account</option>
-                                    <option value="201">Quick Current Account</option>
-                                    <option value="202">Corporate Account</option>
+                                    <option value="202">Corporate Account</option>-->
+                                    <!--<option value="201">Quick Current Account</option>
+                                    
                                     <option value="203">Salary Current Account</option>
                                     <option value="204">Asset Current Account</option>
                                     <option value="205">Staff Current Account</option>
-                                    <option value="206">Quick Cash Current Account</option>
+                                    <option value="206">Quick Cash Current Account</option>-->
                                     
-                                    <option>----All Loan Account----</option>
+                                    <!--<option>----All Loan Account----</option>
                                     <option value="400">Rebiz Individual Loan Account</option>
                                     <option value="401">Rebiz Corporate Loan Account</option>
                                     <option value="402">Term Loan Account</option>
@@ -253,7 +256,7 @@
                                     <option value="408">Quick Loan Account</option>
                                     <option value="409">Salad Loan Account</option>
                                     <option value="410">Quick Cash Loan Account</option>
-                                    <option value="411">Business Term Loan Account</option>
+                                    <option value="411">Business Term Loan Account</option>-->
                                 </select>
                                 
                                 
@@ -294,6 +297,33 @@
                         </div>
                        
                         </form>
+                        </div>
+                        <div *ngIf="showBVN">
+                            <span style="color: #383e7e;"><h2>INSTANT ACCOUNT OPENING FORM</h2></span>
+                            <form class="needs-validation" #bvn="ngForm">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>Please enter a valid Bank Verification Number(BVN) to proceed</p>
+                                        <div class="alert alert-danger" *ngIf="InvalidBVN">
+                                            Invalid BVN Details
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="input-group-addon text-color">BVN</span>
+                                            <input type="text" class="form-control" [(ngModel)]="obj22.BVN" name="BVN" required #BVN="ngModel" id="BVN" />
+                                            <div [hidden]="BVN.valid || BVN.pristine" class="alert alert-danger">
+                                                BVN is required
+                                         </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top: 10px !important;">
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-primary btn-large" [disabled]="!bvn.form.valid" (click)="bvnvalidate(obj22)">Validate BVN</button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
                         </div>
                     </div>
                                               

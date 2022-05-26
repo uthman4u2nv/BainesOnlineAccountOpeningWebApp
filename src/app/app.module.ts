@@ -29,6 +29,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { FixeddepositaccountComponent } from './fixeddepositaccount/fixeddepositaccount.component';
+import { HashLocationStrategy,LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,9 @@ import { FixeddepositaccountComponent } from './fixeddepositaccount/fixeddeposit
     NgBootstrapFormValidationModule.forRoot(),
     NgBootstrapFormValidationModule
   ],
-  providers: [],
+  providers: [
+    {provide:LocationStrategy,useClass:HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,9 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { ApplicationService } from 'src/app/services/application.service';
-import { AppReq } from 'src/models/application';
+import { AppReq,BVNReq } from 'src/models/application';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-
+import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
 import {
   Router,
   Event as RouterEvent,
@@ -16,13 +17,18 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-home-one',
   templateUrl: './home-one.component.html',
-  styleUrls: ['./home-one.component.scss']
+  styleUrls: ['./home-one.component.scss'],
+  providers: [DatePipe]
 })
 export class HomeOneComponent implements OnInit {
   formGroup: FormGroup;
   closeResult='';
+  displayM:boolean=false;
   //public showOverlay = true;
   @Input() obj={FirstName: "",MiddleName: "",LastName: "",Email: "",DateOfBirth: "",Gender: 0,Address: "",PhoneNumber: "",ProductCode2: "100"}
+  @Input() obj22={BVN:""}
+  InvalidBVN:Boolean=false;
+  showBVN:boolean=true;
   AccountNumber:string="";
   CustomerID:string="";
   FullName:string="";
@@ -38,7 +44,7 @@ export class HomeOneComponent implements OnInit {
   captcha:string;
   email:string;
 
-  constructor(public aps:ApplicationService,private router: Router,private modalService: NgbModal) {
+  constructor(public aps:ApplicationService,private router: Router,private modalService: NgbModal,private datePipe:DatePipe) {
 this.captcha="";
 this.email="uthman4u2nv@yahoo.com";
   }
@@ -106,10 +112,34 @@ this.email="uthman4u2nv@yahoo.com";
       this.confirm="none";
       this.error="none";
   }
+  bvnvalidate(data:BVNReq){
+    this.showOverlay=true;
+    this.InvalidBVN=false;
+    this.aps.BvnValidation(data).subscribe(d=>{
+      if(d.FirstName==""){
+        this.InvalidBVN=true;
+      }else{
+        
+      this.displayM=true;
+      this.obj.FirstName=d.FirstName;
+      this.obj.LastName=d.LastName;
+      this.obj.MiddleName=d.OtherNames;
+      this.obj.PhoneNumber=d.phoneNumber;
+      //this.obj.DateOfBirth=this.datePipe.transform(new Date(d.DOB.toString()),'dd/mm/yyyy');
+      
+      this.obj.DateOfBirth="1990-04-20";
+      this.showBVN=false;
+      }
+      this.showOverlay=false;
+    },(error)=>{
+      console.log(error.message);
+    })
+  }
   SubmitApplication(data:AppReq){
     this.showOverlay=true;    
     
     this.aps.SubmitApplication(data).subscribe(d=>{
+      //alert("Result:"+d.responseMessage);
       if(d.AccountNumber !==null){
       this.AccountNumber=d.AccountNumber;
       this.CustomerID=d.CustomerID;
